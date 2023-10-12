@@ -1,4 +1,2 @@
-database_url = "mysql://dev:password@localhost:3306/testing"
-database_name = "testing"
 api_key = "yourapikey"
 log_path = "log/requests.log"
