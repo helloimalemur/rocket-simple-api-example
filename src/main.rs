@@ -19,6 +19,7 @@ use rocket::request::Request;
 use rocket::tokio::time::{interval_at, Instant};
 use rocket::Response;
 use rocket::{custom, tokio};
+use serde_json::Value;
 use sqlx::MySqlPool;
 
 // // // // // // // // // // // // // // // // // // // // // // // //
@@ -48,7 +49,7 @@ async fn getdata(
 #[post("/api/senddata", data = "<data>")]
 async fn senddata(
     socket_addr: SocketAddr,
-    data: Json<User>,
+    data: Json<Value>,
     key: ApiKey<'_>,
     settings: &rocket::State<HashMap<String, String>>,
 ) -> Result<(), ErrorResponder> {
