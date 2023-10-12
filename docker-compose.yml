@@ -1,0 +1,6 @@
+services:
+  exampleauth:
+    restart: always
+    build: .
+    ports:
+      - "7030:8030"

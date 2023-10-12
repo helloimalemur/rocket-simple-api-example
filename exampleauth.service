@@ -1,0 +1,12 @@
+[Unit]
+Description=run example auth api
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/srv/http/vhosts/rocket-sqlx-authentication-api/run.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
