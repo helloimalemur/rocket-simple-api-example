@@ -43,7 +43,7 @@ async fn getdata(
         println!("{}\n{}", key.to_string(), data);
     }
 
-    info!(target:"app::requests", "GET - From: {}", socket_addr.ip().to_string());
+    // info!(target:"app::requests", "GET - From: {}", socket_addr.ip().to_string());
 }
 
 #[post("/api/senddata", data = "<data>")]
@@ -58,7 +58,7 @@ async fn senddata(
         println!("{}\n{:?}", key.to_string(), data);
     }
 
-    info!(target:"app::requests", "From: {}, SUCCESS: {}, USER: {}", socket_addr.ip().to_string(), res, data.clone().username);
+    // info!(target:"app::requests", "From: {}, SUCCESS: {}, USER: {:?}", socket_addr.ip().to_string(), res, data);
     Ok(())
 }
 

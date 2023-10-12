@@ -28,8 +28,8 @@ impl<'r> FromRequest<'r> for ApiKey<'r> {
     }
 }
 
-impl<'r> ToString<'r> for ApiKey<'r> {
+impl<'r> ToString for ApiKey<'r> {
     fn to_string(&self) -> String {
-        self.0.into_string()
+        String::from_utf8(Vec::from(self.0.as_bytes())).unwrap()
     }
 }
