@@ -14,16 +14,16 @@ pub enum ApiKeyError {
 impl<'r> FromRequest<'r> for ApiKey<'r> {
     type Error = ApiKeyError;
 
-    async fn from_request(req: &'r Request<'_>) -> Outcome<ApiKey<'r>, (Status, ApiKeyError), ()> {
+    async fn from_request(req: &'r Request<'_>) -> Outcome<ApiKey<'r>, (Status, ApiKeyError), (Status)> {
         /// Returns true if `key` is a valid API key string.
         fn is_valid(key: &str) -> bool {
             key.len() > 0
         }
 
         match req.headers().get_one("x-api-key") {
-            None => Outcome::Failure((Status::BadRequest, ApiKeyError::MissingError)),
             Some(key) if is_valid(key) => Outcome::Success(ApiKey(key)),
-            Some(_) => Outcome::Failure((Status::BadRequest, ApiKeyError::InvalidError)),
+            None => Outcome::Success(ApiKey("")),
+            _ => Outcome::Success(ApiKey("")),
         }
     }
 }
